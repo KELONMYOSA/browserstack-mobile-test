@@ -11,11 +11,9 @@ public class BrowserStack {
 
         return given()
                 .auth().basic(config.browserstackUser(), config.browserstackKey())
-                .log().all()
                 .when()
                 .get(url)
                 .then()
-                .log().all()
                 .statusCode(200)
                 .extract()
                 .path("automation_session.video_url");

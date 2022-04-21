@@ -1,17 +1,17 @@
 package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
-import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import static config.Project.config;
 
-public class BrowserstackMobileDriver implements WebDriverProvider {
+public class BrowserstackSelenideDriver implements WebDriverProvider {
 
     public static URL getBrowserstackUrl() {
         try {
@@ -35,15 +35,15 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
         mutableCapabilities.setCapability("app", config.browserstackAppUrl());
 
         // Specify device and os_version for testing
-        mutableCapabilities.setCapability("device", "Google Pixel 3");
-        mutableCapabilities.setCapability("os_version", "9.0");
+        mutableCapabilities.setCapability("device", "Samsung Galaxy S22 Ultra");
+        mutableCapabilities.setCapability("os_version", "12.0");
 
         // Set other BrowserStack capabilities
-        mutableCapabilities.setCapability("project", "First Java Project");
-        mutableCapabilities.setCapability("build", "browserstack-build-1");
-        mutableCapabilities.setCapability("name", "first_test");
+        mutableCapabilities.setCapability("project", "Browserstack Mobile Test");
+        mutableCapabilities.setCapability("build", "browserstack-build");
+        mutableCapabilities.setCapability("name", "wikipedia-android-test");
 
 
-        return new AndroidDriver(getBrowserstackUrl(), mutableCapabilities);
+        return new RemoteWebDriver(getBrowserstackUrl(), mutableCapabilities);
     }
 }
